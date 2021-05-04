@@ -11,7 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dust.action.Action;
 import com.dust.action.ActionFoward;
+import com.dust.action.ContractAction;
 import com.dust.action.IndexAction;
+import com.dust.action.JoinAction;
+import com.dust.action.JoinFormAction;
+import com.dust.action.LoginAction;
+import com.dust.action.LoginFormAction;
+import com.dust.action.LogoutAction;
+import com.dust.action.MyPageAction;
 
 @WebServlet("/AzeroFrontController")
 public class AzeroFrontController extends HttpServlet {
@@ -41,9 +48,30 @@ public class AzeroFrontController extends HttpServlet {
 		System.out.println("ctx ==> " + ctx);
 		System.out.println("command ==> " + command);
 
-		// --------------- 액션 맵핑 ---------------
+		// --------------- 메인, 회원가입, 프로필 맵핑 ---------------
 		if (command.equals("/index.Azero")) { // 메인
 			action = new IndexAction();
+			forward = action.excute(request, response);
+		} else if (command.equals("/loginForm.Azero")) {
+			action = new LoginFormAction();
+			forward = action.excute(request, response);
+		} else if (command.equals("/login.Azero")) {
+			action = new LoginAction();
+			forward = action.excute(request, response);
+		} else if (command.equals("/logout.Azero")) {
+			action = new LogoutAction();
+			forward = action.excute(request, response);
+		} else if (command.equals("/contract.Azero")) {
+			action = new ContractAction();
+			forward = action.excute(request, response);
+		} else if (command.equals("/joinform.Azero")) {
+			action = new JoinFormAction();
+			forward = action.excute(request, response);
+		} else if (command.equals("/join.Azero")) {
+			action = new JoinAction();
+			forward = action.excute(request, response);
+		} else if (command.equals("/mypages.Azero")) {
+			action = new MyPageAction();
 			forward = action.excute(request, response);
 		}
 

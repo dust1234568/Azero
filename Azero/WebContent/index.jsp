@@ -71,7 +71,7 @@
                                 </form>
                             </div>
                             <!-- Login -->
-                            <a href="login.html" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+                            <a href="login.Azero" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
                                             <li><a href="video-post.html">- Single Video Post</a></li>
                                             <li><a href="contact.html">- Contact</a></li>
                                             <li><a href="typography.html">- Typography</a></li>
-                                            <li><a href="login.html">- Login</a></li>
+                                            <li><a href="loginform.Azero">- Login</a></li> <!-- login.html -->
                                         </ul>
                                     </li>
                                     <li><a href="#">Features</a>
