@@ -48,7 +48,14 @@ public class MemberDAO {
 
 		try {
 			result = sqlSession.selectOne("confirmId", userId);
-
+			System.out.println("DAO userId = " + userId);
+			System.out.println("result = : " + result);
+			
+			if (result != 0) {
+				result = 1;
+			} else {
+				result = -1;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

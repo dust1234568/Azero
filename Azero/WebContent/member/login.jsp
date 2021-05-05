@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ include file="../header.jsp" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -20,10 +21,11 @@
 			<div id="buttons">
 				<input type="submit" value="로그인" class="submit">
 				<input type="button" value="회원가입" class="cancel" onclick="location='contract.Azero'">
-				<input type="button" value="아이디 / 비밀번호 찾기" class="submit" onclick="location='find_id_form.Azero'">
+				<input type="button" value="아이디 / 비밀번호 찾기" class="submit" onclick="location='findidform.Azero'">
 			</div>
 		</form>
 	</article>
 	
 </body>
 </html>
+<%@ include file="../footer.jsp" %>

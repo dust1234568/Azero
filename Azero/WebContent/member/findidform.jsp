@@ -65,9 +65,9 @@
 </head>
 <body>
 	<div id="popup">
-		<h1>우편 번호 검색</h1>
-		<form action="find_zip_num.Azero" name="frm" method="post">
-			동 이름 :  <input type="text" name="dong">
+		<h1>아이디 찾기</h1>
+		<form action="findidform.Azero" name="frm" method="post">
+			아이디 :  <input type="text" name="id">
 			<input type="submit" value="찾기" class="submit">
 		</form>
 		<table id="zipcode">
@@ -75,10 +75,10 @@
 				<th>우편번호</th>
 				<th>주소</th>
 			</tr>
-			<c:forEach items="${addressList }" var="addressDTO">
+			<c:forEach items="${MemList }" var=MemberDTO">
 				<tr>
 					<td>
-						${addressDTO.zipNum }
+						${MemberDTO.id }
 					</td>
 					<td>
 						<a href="#addr" onclick="return result('${addressDTO.zipNum}', '${addressDTO.sido}', '${addressDTO.gugun}', '${addressDTO.dong}', '${addressDTO.bungi}');">

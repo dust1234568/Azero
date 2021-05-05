@@ -15,7 +15,7 @@
 				$("#idChk").css("background-color","white");
 				$.ajax({
 					type : "POST",
-					url : "id_check_form.bizpoll",
+					url : "id_check_form.Azero",
 					dataType : "json",
 					data : "id=" + id,
 					success : function(data) {
@@ -24,7 +24,7 @@
 							$("#message").html("사용 불가능 아이디 입니다.").css("color","red");
 							$("#reid").val("-1");
 						} else {
-							$("#message").html("사용 가능 아이디 입니다.").css("color","blue");
+							$("#message").html("사용 가능 아이디 입니다.").css("color","green");
 							$("#reid").val("1");
 						}
 					},
@@ -36,36 +36,35 @@
 			}
 		});
 	});
+	
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#preview").attr("src", e.target.result);
+			}
+			
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 </script>
 	<article>
 		<h2>Join Us</h2>
 		<form action="join.Azero" id="join" method="post" name="frm">
 			<fieldset>
-				<legend>Basic Info</legend>
+				<img id="preview" alt="preview" src="#" width="100" height="100" border="50%">
+				<legend>Sign Up</legend>
 				<label>User ID</label>
-				<!-- <input type="text" name="id" size="12"> -->
 				<input type="text" name="id" id="idChk">&nbsp;<span id="message"></span>
 				<input type="hidden" name="reid" id="reid"><br>
-				<!-- <input type="button" value="중복 체크" class="dup" onclick="idcheck();"><br> -->
 				<label>Password</label>
 				<input type="password" name="pwd"><br>
 				<label>Retype Password</label>
 				<input type="password" name="pwdCheck"><br>
-				<label>Name</label>
-				<input type="text" name="name"><br>
 				<label>Email</label>
-				<input type="text" name="email">
-			</fieldset>
-			<fieldset>
-				<legend>Optional</legend>
-				<label>Zip Code</label>
-				<input type="text" name="zipNum" size="10">
-				<input type="button" value="주소찾기" class="dup" onclick="post_zip();"><br>
-				<label>Address</label>
-				<input type="text" name="addr1" size="50"><br>
-				<input type="text" name="addr2" size="25"><br>
-				<label>Phone Number</label>
-				<input type="text" name="phone">
+				<input type="text" name="email" ><br>
+				<label>Profile Photo</label>
+				<input type="file" name="filename" onchange="readURL(this);">
 			</fieldset>
 			<div id="buttons">
 				<input type="button" value="회원가입" class="submit" onclick="go_save();">

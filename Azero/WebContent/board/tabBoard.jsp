@@ -1,12 +1,326 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script type="text/javascript" src="js/member.js"></script>
-	<article>
-		<h2>Join Us</h2>
-		<form id="join" action="joinform.Azero" method="post" name="frm">
-			약관 내용.
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<%@ include file="../header.jsp" %>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>고객 센터</title>
+<link href="css/board.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	  $(".tab_title li").click(function() {
+	    var idx = $(this).index();
+	    $(".tab_title li").removeClass("on");
+	    $(".tab_title li").eq(idx).addClass("on");
+	    $(".tab_cont > div").hide();
+	    $(".tab_cont > div").eq(idx).show();
+	  })
+	});
+</script>
+</head>
+<body>
+<br>
+<br>
+<br>
+	<div class="container">
+	  <ul class="tab_title">
+	    <li class="on">
+	    	<a href="boardnotice.jsp"><span>공지사항</span></a>
+	    </li>
+	    <li>
+	    	<a href="boardqs.jsp"><span>자주 묻는 질문</span></a>
+	    </li>
+	    <li>
+	    	<a href="#"><span>1 : 1 문의</span></a>
+	    </li>
+	    <li>
+	    	이용약관
+	    </li>
+	  </ul>
+	  <div class="tab_cont">
+	  <!-- 공지 사항 -->
+	    <div class="on">
+	     	<table align="center" border="1" style="border-collapse: collapse;" width="80%">
+				<thead>
+					<p></p>
+					<tr>
+						<td colspan="5" align="center">
+							<form action="boardList.bizpoll" method="get">
+								<select name="searchType" id="searchType">
+									<option value="t" <c:out value="${boardInfo.searchType == 't' ? 'selected' : '' }"/>>제목</option>
+									<option value="c" <c:out value="${boardInfo.searchType == 't' ? 'selected' : '' }"/>>내용</option>
+									<option value="tc" <c:out value="${boardInfo.searchType == 't' ? 'selected' : '' }"/>>제목 + 내용</option>
+								</select>
+								<input type="text" name="searchKeyword" id="searchKeyword" value="${boardInfo.searchKeyword }">
+								<input type="submit" value="검색">
+							</form>
+						</td>
+					</tr>
+					<tr height="10"align="center"bgcolor="lightgray">
+						<th>번호</th>
+						<th>구분</th>
+						<th>제목</th>
+						<th>등록일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${empty boardInfo.selAllBoardList}">
+							<tr height="10">
+								<th colspan="5">
+									<p align="center">
+										<b><span style="font-size: 20px;">등록된 글이 없습니다.</span></b>
+									</p>
+								</th>
+							</tr>
+						</c:when>
+						<c:when test="${!empty boardInfo.selAllBoardList}">
+							<c:forEach items="${boardInfo.selAllBoardList}" var="selAllBoardListDTO" varStatus="status">
+								<tr>
+									<td width="5%">${selAllBoardListDTO.articleNo}</td>
+									<td width="10%">${selAllBoardListDTO.id}</td>
+									<td width="75%" style="text-align: left;">
+										<span style="padding-left: 10px;"></span>
+										<a class="cls1" href="boardView.bizpoll?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
+									</td>
+									<td width="10%"><fmt:formatDate value="${selAllBoardListDTO.reg_date}" pattern="yyyy-MM-dd"/></td>
+								</tr>						
+							</c:forEach>
+						</c:when>
+					</c:choose>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="5" align="center">
+							<div class="cls2">
+								<c:if test="${!empty boardInfo.boardListAllCnt}">
+									<c:choose>
+										<c:when test="${boardInfo.boardListAllCnt > 100 }">
+											<c:forEach var="page" begin="1" end="10" step="1">
+												<c:if test="${boardInfo.section > 1 && page == 1}">
+													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section-1}&pageNum=${(boardInfo.section-1)*10+1}">&nbsp;pre</a>
+												</c:if>
+												<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${(boardInfo.section-1)*10 + page} </a>
+												<c:if test="${page == 10 }">
+													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section+1}&pageNum=${(boardInfo.section+1)*10+1}">&nbsp;next</a>
+												</c:if>
+											</c:forEach>
+										</c:when>
+										<c:when test="${boardInfo.boardListAllCnt == 100 }">
+											<c:forEach var="page" begin="1" end="10" step="1">
+												<a class="no-uline" href="#">${boardInfo.pageNum }</a>
+											</c:forEach>
+										</c:when>
+										<c:when test="${boardInfo.boardListAllCnt < 100 }">
+											<c:forEach var="page" begin="1" end="${boardInfo.boardListAllCnt/10 +1 }" step="1">
+												<c:choose>
+													<c:when test="${page == boardInfo.pageNum }">
+														<a class="sel-page" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+													</c:when>
+													<c:otherwise>
+														<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</c:when>
+									</c:choose>
+								</c:if>
+							</div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+	    </div>
+	    <!-- 자주 묻는 질문 -->
+	    <div>
+	     	<table align="center" border="1" style="border-collapse: collapse;" width="80%">
+				<thead>
+					<tr height="10"align="center"bgcolor="lightgray">
+						<th>구분</th>
+						<th>내용</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${empty boardInfo.selAllBoardList}">
+							<tr height="10">
+								<th colspan="5">
+									<p align="center">
+										<b><span style="font-size: 20px;">등록된 글이 없습니다.</span></b>
+									</p>
+								</th>
+							</tr>
+						</c:when>
+						<c:when test="${!empty boardInfo.selAllBoardList}">
+							<c:forEach items="${boardInfo.selAllBoardList}" var="selAllBoardListDTO" varStatus="status">
+								<tr>
+									<td width="5%">${selAllBoardListDTO.articleNo}</td>
+									<td width="85%" style="text-align: left;">
+										<span style="padding-left: 10px;"></span>
+										<a class="cls1" href="boardView.bizpoll?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
+									</td>
+									<td width="10%"><fmt:formatDate value="${selAllBoardListDTO.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+								</tr>						
+							</c:forEach>
+						</c:when>
+					</c:choose>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="5" align="center">
+							<div class="cls2">
+								<c:if test="${!empty boardInfo.boardListAllCnt}">
+									<c:choose>
+										<c:when test="${boardInfo.boardListAllCnt > 100 }">
+											<c:forEach var="page" begin="1" end="10" step="1">
+												<c:if test="${boardInfo.section > 1 && page == 1}">
+													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section-1}&pageNum=${(boardInfo.section-1)*10+1}">&nbsp;pre</a>
+												</c:if>
+												<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${(boardInfo.section-1)*10 + page} </a>
+												<c:if test="${page == 10 }">
+													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section+1}&pageNum=${(boardInfo.section+1)*10+1}">&nbsp;next</a>
+												</c:if>
+											</c:forEach>
+										</c:when>
+										<c:when test="${boardInfo.boardListAllCnt == 100 }">
+											<c:forEach var="page" begin="1" end="10" step="1">
+												<a class="no-uline" href="#">${boardInfo.pageNum }</a>
+											</c:forEach>
+										</c:when>
+										<c:when test="${boardInfo.boardListAllCnt < 100 }">
+											<c:forEach var="page" begin="1" end="${boardInfo.boardListAllCnt/10 +1 }" step="1">
+												<c:choose>
+													<c:when test="${page == boardInfo.pageNum }">
+														<a class="sel-page" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+													</c:when>
+													<c:otherwise>
+														<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</c:when>
+									</c:choose>
+								</c:if>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5" align="center">
+							<form action="boardList.bizpoll" method="get">
+								<select name="searchType" id="searchType">
+									<option value="t" <c:out value="${boardInfo.searchType == 't' ? 'selected' : '' }"/>>제목</option>
+									<option value="c" <c:out value="${boardInfo.searchType == 't' ? 'selected' : '' }"/>>내용</option>
+									<option value="tc" <c:out value="${boardInfo.searchType == 't' ? 'selected' : '' }"/>>제목 + 내용</option>
+								</select>
+								<input type="text" name="searchKeyword" id="searchKeyword" value="${boardInfo.searchKeyword }">
+								<input type="submit" value="검색">
+							</form>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+	    </div>
+	    <!-- 1 : 1 문의 -->
+	    <div>
+			<table align="center" border="1" style="border-collapse: collapse;" width="80%">
+				<thead>
+					<tr height="10"align="center"bgcolor="lightgray">
+						<th>No.</th>
+						<th>문의 내용</th>
+						<th>등록일</th>
+						<th>답변</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${empty boardInfo.selAllBoardList}">
+							<tr height="10">
+								<th colspan="5">
+									<p align="center">
+										<b><span style="font-size: 20px;">등록된 글이 없습니다.</span></b>
+									</p>
+								</th>
+							</tr>
+						</c:when>
+						<c:when test="${!empty boardInfo.selAllBoardList}">
+							<c:forEach items="${boardInfo.selAllBoardList}" var="selAllBoardListDTO" varStatus="status">
+								<tr>
+									<td width="10%">${selAllBoardListDTO.articleNo}</td>
+									<td width="60%" style="text-align: left;">
+										<span style="padding-left: 10px;"></span>
+										<c:choose>
+											<c:when test="${selAllBoardListDTO.re_level > 1 }">
+												<c:forEach begin="2" end="${selAllBoardListDTO.re_level }" step="1">
+													<span style="padding-left: 20px;"></span>
+												</c:forEach>
+												<span style="font-size: 12px;">[답변]</span>
+												<a class="cls1" href="boardView.bizpoll?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
+											</c:when>
+											<c:otherwise>
+											<a class="cls1" href="boardView.bizpoll?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
+										</c:otherwise>
+										</c:choose>
+									</td>
+									<td width="20%"><fmt:formatDate value="${selAllBoardListDTO.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+									<td width="10%">${selAllBoardListDTO.readcount}</td>
+								</tr>						
+							</c:forEach>
+						</c:when>
+					</c:choose>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="5" align="center">
+							<div class="cls2">
+								<c:if test="${!empty boardInfo.boardListAllCnt}">
+									<c:choose>
+										<c:when test="${boardInfo.boardListAllCnt > 100 }">
+											<c:forEach var="page" begin="1" end="10" step="1">
+												<c:if test="${boardInfo.section > 1 && page == 1}">
+													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section-1}&pageNum=${(boardInfo.section-1)*10+1}">&nbsp;pre</a>
+												</c:if>
+												<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${(boardInfo.section-1)*10 + page} </a>
+												<c:if test="${page == 10 }">
+													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section+1}&pageNum=${(boardInfo.section+1)*10+1}">&nbsp;next</a>
+												</c:if>
+											</c:forEach>
+										</c:when>
+										<c:when test="${boardInfo.boardListAllCnt == 100 }">
+											<c:forEach var="page" begin="1" end="10" step="1">
+												<a class="no-uline" href="#">${boardInfo.pageNum }</a>
+											</c:forEach>
+										</c:when>
+										<c:when test="${boardInfo.boardListAllCnt < 100 }">
+											<c:forEach var="page" begin="1" end="${boardInfo.boardListAllCnt/10 +1 }" step="1">
+												<c:choose>
+													<c:when test="${page == boardInfo.pageNum }">
+														<a class="sel-page" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+													</c:when>
+													<c:otherwise>
+														<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</c:when>
+									</c:choose>
+								</c:if>
+							</div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+	    </div>
+	    <!-- 이용 약관 -->
+	    <div>
+			
 			<br><br>
-			<textarea rows="15" cols="80">
+			<p style="text-align: left; font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서비스 이용 약관</p>
+			<textarea rows="35" cols="110">
 				제1장 총칙
 
 제1조(목적)
@@ -166,11 +480,9 @@
 본 약관은 2021년 05월 04일부터 시행됩니다.
    * 본 약관에 대한 저작권은 행정안전부에 귀속하며 무단 복제, 배포, 전송, 기타 저작권 침해행위를 엄금합니다.
 			</textarea>
-			<br><br>
-			<div style="text-align: center;">
-				<input type="radio" name="okon1" checked="checked"> 동의함&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="okon1" > 동의안함
-			</div>
-			<input type="button" value="Next" class="submit" onclick="go_next();" style="float:right;">
-		</form>
-	</article>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>
+<%@ include file="../footer.jsp" %>

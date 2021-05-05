@@ -13,7 +13,7 @@
 		]]>
 	</select>
 	
-	<select id="confirmID" resultType="int" parameterType="com.dust.dto.MemberDTO">
+	<select id="confirmID" resultType="int">
 		<![CDATA[
 			SELECT * 
 			FROM member 
@@ -23,8 +23,8 @@
 	
 	<insert id="joinMember" parameterType="com.dust.dto.MemberDTO">
 		<![CDATA[
-			INSERT INTO member(id, pwd, name, email, address, phone, zip_num) 
-			VALUES (#{id}, #{pwd}, #{name}, #{email}, #{address}, #{phone}, #{zip_num})
+			INSERT INTO member(id, pwd, email) 
+			VALUES (#{id}, #{pwd}, #{email})
 		]]>
 	</insert>
 	

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
  
- <properties resource="com/Azero/mybatis/db.properties"/>
+ <properties resource="com/dust/mybatis/db.properties"/>
  
   <environments default="development">
     <environment id="development">
@@ -18,7 +18,7 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="com/Azero/mybatis/BoardMapper.xml"/>
-    <mapper resource="com/Azero/mybatis/MemberMapper.xml" />
+    <mapper resource="com/dust/mybatis/BoardMapper.xml"/>
+    <mapper resource="com/dust/mybatis/MemberMapper.xml" />
   </mappers>
 </configuration>
