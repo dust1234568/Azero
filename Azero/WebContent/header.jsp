@@ -26,6 +26,10 @@
 						<li><a href="contract.Azero">JOIN</a></li>
 					</c:when>
 					<c:otherwise>
+						<%-- <li style="width: 30px; height: 30px">
+							${sessionScope.loginUser.filename }
+						</li>
+						<li>|</li> --%>
 						<li style="color: orange">
 							${sessionScope.loginUser.id }(${sessionScope.loginUser.email })
 						</li>

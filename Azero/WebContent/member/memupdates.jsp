@@ -18,7 +18,6 @@
 	
 	String id = mDto.getId();
 	String pwd = mDto.getPwd();
-	String name = mDto.getName();
 	String email = mDto.getEmail();
 	
 %>
@@ -35,8 +34,6 @@
 				<input name="pwd" type="password"><br>
 				<label>New Password Check</label>
 				<input name="repwd" type="password"><br>
-				<label>Name</label>
-				<input name="irum" type="text" value="<%=name %>" readonly="readonly"><br>
 				<label>Email</label>
 				<input name="email" type="text" value="<%=email %>"><br>
 			</fieldset>

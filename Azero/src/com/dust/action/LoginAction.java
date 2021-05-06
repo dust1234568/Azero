@@ -23,12 +23,18 @@ public class LoginAction implements Action {
 		String userId = request.getParameter("id");
 		String userPwd = request.getParameter("pwd");
 
+		System.out.println("id = " + userId);
+		System.out.println("pwd = " + userPwd);
+		
 		MemberDAO mDao = MemberDAO.getInstance();
 		MemberDTO mDto = mDao.getMember(userId);
+		System.out.println("loginAction mDto = " + mDto);
 
 		if (mDto != null) {
-
+			
+			System.out.println("mDto != " + mDto);
 			if (mDto.getPwd().equals(userPwd)) {
+				System.out.println("userPwd=pwd = " + userPwd);
 				session.removeAttribute("id");
 				session.setAttribute("loginUser", mDto);
 				url = "index.Azero";

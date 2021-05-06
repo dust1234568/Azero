@@ -124,9 +124,10 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="Azero" path="/Azero" reloadable="true" source="org.eclipse.jst.jee.server:Azero"/>
-      <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/myoracle" password="1234" type="javax.sql.DataSource" url="jdbc:oracle:thin:@172.30.1.59:1521:xe" username="scott"/>
-      <Context docBase="bizpoll" path="/bizpoll" reloadable="true" source="org.eclipse.jst.jee.server:bizpoll"/></Host>
+      <Context docBase="Azero" path="/Azero" reloadable="true" source="org.eclipse.jst.jee.server:Azero">
+      <Resource name="jdbc/myoracle" auth="Container" type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver" url="jdbc:oracle:thin:@192.168.4.143:1521:xe" username="scott" password="1234" maxActive="20" maxIdle="10" maxWait="-1"/>
+      </Context>
+      </Host>
     </Engine>
   </Service>
 </Server>

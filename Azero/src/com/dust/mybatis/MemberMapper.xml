@@ -5,42 +5,42 @@
 
 <mapper namespace="com/dust.mybatis.MemberMapper.xml">
 	
-	<select id="getMember" resultType="com.dust.dto.MemberDTO">
+	<select id="getMember" resultType="com.dust.dto.MemberDTO" parameterType="map">
 		<![CDATA[
-			SELECT * 
-			FROM member 
+			SELECT *
+			FROM member
 			WHERE id= #{id}
 		]]>
 	</select>
 	
-	<select id="confirmID" resultType="int">
+	<!-- <select id="confirmID" resultType="String">
 		<![CDATA[
-			SELECT * 
+			SELECT id 
 			FROM member 
 			WHERE id = #{id}
 		]]>
-	</select>
+	</select> -->
 	
 	<insert id="joinMember" parameterType="com.dust.dto.MemberDTO">
 		<![CDATA[
-			INSERT INTO member(id, pwd, email) 
-			VALUES (#{id}, #{pwd}, #{email})
+			INSERT INTO member(id, pwd, email, filename)
+			VALUES (#{id}, #{pwd}, #{email}, #{filename})
 		]]>
 	</insert>
 	
 	<delete id="delMember" parameterType="com.dust.dto.MemberDTO">
 		<![CDATA[
-			DELETE FROM member 
-			WHERE id = #{id} 
+			DELETE FROM member
+			WHERE id = #{id}
 			AND pwd = #{pwd}
 		]]>
 	</delete>
 	
 	<update id="upMember" parameterType="com.dust.dto.MemberDTO">
 		<![CDATA[
-			UPDATE member 
-			SET pwd = #{rePwd} 
-			WHERE id = #{id} 
+			UPDATE member
+			SET pwd = #{rePwd}
+			WHERE id = #{id}
 			AND pwd = #{pwd}
 		]]>
 	</update>

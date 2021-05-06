@@ -29,10 +29,10 @@ $(document).ready(function() {
 	<div class="container">
 	  <ul class="tab_title">
 	    <li class="on">
-	    	<a href="boardnotice.jsp"><span>공지사항</span></a>
+	    	<a href="boardnotice.Azero"><span>공지사항</span></a>
 	    </li>
 	    <li>
-	    	<a href="boardqs.jsp"><span>자주 묻는 질문</span></a>
+	    	<a href="boardqs.Azero"><span>자주 묻는 질문</span></a>
 	    </li>
 	    <li>
 	    	<a href="#"><span>1 : 1 문의</span></a>
@@ -49,7 +49,7 @@ $(document).ready(function() {
 					<p></p>
 					<tr>
 						<td colspan="5" align="center">
-							<form action="boardList.bizpoll" method="get">
+							<form action="boardList.Azero" method="get">
 								<select name="searchType" id="searchType">
 									<option value="t" <c:out value="${boardInfo.searchType == 't' ? 'selected' : '' }"/>>제목</option>
 									<option value="c" <c:out value="${boardInfo.searchType == 't' ? 'selected' : '' }"/>>내용</option>
@@ -85,7 +85,7 @@ $(document).ready(function() {
 									<td width="10%">${selAllBoardListDTO.id}</td>
 									<td width="75%" style="text-align: left;">
 										<span style="padding-left: 10px;"></span>
-										<a class="cls1" href="boardView.bizpoll?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
+										<a class="cls1" href="boardView.Azero?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
 									</td>
 									<td width="10%"><fmt:formatDate value="${selAllBoardListDTO.reg_date}" pattern="yyyy-MM-dd"/></td>
 								</tr>						
@@ -102,11 +102,11 @@ $(document).ready(function() {
 										<c:when test="${boardInfo.boardListAllCnt > 100 }">
 											<c:forEach var="page" begin="1" end="10" step="1">
 												<c:if test="${boardInfo.section > 1 && page == 1}">
-													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section-1}&pageNum=${(boardInfo.section-1)*10+1}">&nbsp;pre</a>
+													<a class="no-uline" href="boardList.Azero?section=${boardInfo.section-1}&pageNum=${(boardInfo.section-1)*10+1}">&nbsp;pre</a>
 												</c:if>
-												<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${(boardInfo.section-1)*10 + page} </a>
+												<a class="no-uline" href="boardList.Azero?section=${boardInfo.section }&pageNum=${page}">${(boardInfo.section-1)*10 + page} </a>
 												<c:if test="${page == 10 }">
-													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section+1}&pageNum=${(boardInfo.section+1)*10+1}">&nbsp;next</a>
+													<a class="no-uline" href="boardList.Azero?section=${boardInfo.section+1}&pageNum=${(boardInfo.section+1)*10+1}">&nbsp;next</a>
 												</c:if>
 											</c:forEach>
 										</c:when>
@@ -119,10 +119,10 @@ $(document).ready(function() {
 											<c:forEach var="page" begin="1" end="${boardInfo.boardListAllCnt/10 +1 }" step="1">
 												<c:choose>
 													<c:when test="${page == boardInfo.pageNum }">
-														<a class="sel-page" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+														<a class="sel-page" href="boardList.Azero?section=${boardInfo.section }&pageNum=${page}">${page }</a>
 													</c:when>
 													<c:otherwise>
-														<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+														<a class="no-uline" href="boardList.Azero?section=${boardInfo.section }&pageNum=${page}">${page }</a>
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
@@ -162,9 +162,9 @@ $(document).ready(function() {
 									<td width="5%">${selAllBoardListDTO.articleNo}</td>
 									<td width="85%" style="text-align: left;">
 										<span style="padding-left: 10px;"></span>
-										<a class="cls1" href="boardView.bizpoll?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
+										<a class="cls1" href="boardView.Azero?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
 									</td>
-									<td width="10%"><fmt:formatDate value="${selAllBoardListDTO.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+									<td width="10%"></td>
 								</tr>						
 							</c:forEach>
 						</c:when>
@@ -179,11 +179,11 @@ $(document).ready(function() {
 										<c:when test="${boardInfo.boardListAllCnt > 100 }">
 											<c:forEach var="page" begin="1" end="10" step="1">
 												<c:if test="${boardInfo.section > 1 && page == 1}">
-													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section-1}&pageNum=${(boardInfo.section-1)*10+1}">&nbsp;pre</a>
+													<a class="no-uline" href="boardList.Azero?section=${boardInfo.section-1}&pageNum=${(boardInfo.section-1)*10+1}">&nbsp;pre</a>
 												</c:if>
-												<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${(boardInfo.section-1)*10 + page} </a>
+												<a class="no-uline" href="boardList.Azero?section=${boardInfo.section }&pageNum=${page}">${(boardInfo.section-1)*10 + page} </a>
 												<c:if test="${page == 10 }">
-													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section+1}&pageNum=${(boardInfo.section+1)*10+1}">&nbsp;next</a>
+													<a class="no-uline" href="boardList.Azero?section=${boardInfo.section+1}&pageNum=${(boardInfo.section+1)*10+1}">&nbsp;next</a>
 												</c:if>
 											</c:forEach>
 										</c:when>
@@ -196,10 +196,10 @@ $(document).ready(function() {
 											<c:forEach var="page" begin="1" end="${boardInfo.boardListAllCnt/10 +1 }" step="1">
 												<c:choose>
 													<c:when test="${page == boardInfo.pageNum }">
-														<a class="sel-page" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+														<a class="sel-page" href="boardList.Azero?section=${boardInfo.section }&pageNum=${page}">${page }</a>
 													</c:when>
 													<c:otherwise>
-														<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+														<a class="no-uline" href="boardList.Azero?section=${boardInfo.section }&pageNum=${page}">${page }</a>
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
@@ -211,7 +211,7 @@ $(document).ready(function() {
 					</tr>
 					<tr>
 						<td colspan="5" align="center">
-							<form action="boardList.bizpoll" method="get">
+							<form action="boardList.Azero" method="get">
 								<select name="searchType" id="searchType">
 									<option value="t" <c:out value="${boardInfo.searchType == 't' ? 'selected' : '' }"/>>제목</option>
 									<option value="c" <c:out value="${boardInfo.searchType == 't' ? 'selected' : '' }"/>>내용</option>
@@ -259,10 +259,10 @@ $(document).ready(function() {
 													<span style="padding-left: 20px;"></span>
 												</c:forEach>
 												<span style="font-size: 12px;">[답변]</span>
-												<a class="cls1" href="boardView.bizpoll?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
+												<a class="cls1" href="boardView.Azero?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
 											</c:when>
 											<c:otherwise>
-											<a class="cls1" href="boardView.bizpoll?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
+											<a class="cls1" href="boardView.Azero?articleNo=${selAllBoardListDTO.articleNo }">${selAllBoardListDTO.subject}</a>
 										</c:otherwise>
 										</c:choose>
 									</td>
@@ -282,11 +282,11 @@ $(document).ready(function() {
 										<c:when test="${boardInfo.boardListAllCnt > 100 }">
 											<c:forEach var="page" begin="1" end="10" step="1">
 												<c:if test="${boardInfo.section > 1 && page == 1}">
-													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section-1}&pageNum=${(boardInfo.section-1)*10+1}">&nbsp;pre</a>
+													<a class="no-uline" href="boardList.Azero?section=${boardInfo.section-1}&pageNum=${(boardInfo.section-1)*10+1}">&nbsp;pre</a>
 												</c:if>
-												<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${(boardInfo.section-1)*10 + page} </a>
+												<a class="no-uline" href="boardList.Azero?section=${boardInfo.section }&pageNum=${page}">${(boardInfo.section-1)*10 + page} </a>
 												<c:if test="${page == 10 }">
-													<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section+1}&pageNum=${(boardInfo.section+1)*10+1}">&nbsp;next</a>
+													<a class="no-uline" href="boardList.Azero?section=${boardInfo.section+1}&pageNum=${(boardInfo.section+1)*10+1}">&nbsp;next</a>
 												</c:if>
 											</c:forEach>
 										</c:when>
@@ -299,10 +299,10 @@ $(document).ready(function() {
 											<c:forEach var="page" begin="1" end="${boardInfo.boardListAllCnt/10 +1 }" step="1">
 												<c:choose>
 													<c:when test="${page == boardInfo.pageNum }">
-														<a class="sel-page" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+														<a class="sel-page" href="boardList.Azero?section=${boardInfo.section }&pageNum=${page}">${page }</a>
 													</c:when>
 													<c:otherwise>
-														<a class="no-uline" href="boardList.bizpoll?section=${boardInfo.section }&pageNum=${page}">${page }</a>
+														<a class="no-uline" href="boardList.Azero?section=${boardInfo.section }&pageNum=${page}">${page }</a>
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>

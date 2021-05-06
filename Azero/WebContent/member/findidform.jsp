@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>우편 번호 검색</title>
+<title>search my profile</title>
 <style type="text/css">
 	body {
 		background-color: #fff;
@@ -67,23 +67,17 @@
 	<div id="popup">
 		<h1>아이디 찾기</h1>
 		<form action="findidform.Azero" name="frm" method="post">
-			아이디 :  <input type="text" name="id">
+			Email :  <input type="text" name="email">
 			<input type="submit" value="찾기" class="submit">
 		</form>
 		<table id="zipcode">
 			<tr>
-				<th>우편번호</th>
 				<th>주소</th>
 			</tr>
-			<c:forEach items="${MemList }" var=MemberDTO">
+			<c:forEach items="${MemList.email }" var=MemberDTO">
 				<tr>
 					<td>
-						${MemberDTO.id }
-					</td>
-					<td>
-						<a href="#addr" onclick="return result('${addressDTO.zipNum}', '${addressDTO.sido}', '${addressDTO.gugun}', '${addressDTO.dong}', '${addressDTO.bungi}');">
-							${addressDTO.zipNum} ${addressDTO.sido} ${addressDTO.gugun} ${addressDTO.dong} ${addressDTO.bungi}
-						</a>
+						<input type="text" id="email" >
 					</td>
 				</tr>
 			</c:forEach>

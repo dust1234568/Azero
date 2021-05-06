@@ -20,5 +20,6 @@
   <mappers>
     <mapper resource="com/dust/mybatis/BoardMapper.xml"/>
     <mapper resource="com/dust/mybatis/MemberMapper.xml" />
+    <mapper resource="com/dust/mybatis/NoticeMapper.xml" />
   </mappers>
 </configuration>

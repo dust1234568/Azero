@@ -1,8 +1,13 @@
 package com.dust.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.dust.common.DBManager;
 import com.dust.dto.MemberDTO;
 import com.dust.mybatis.SqlMapConfig;
 
@@ -30,6 +35,7 @@ public class MemberDAO {
 
 		try {
 			mDto = sqlSession.selectOne("getMember", userId);
+			System.out.println("mDto = " + mDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -42,26 +48,35 @@ public class MemberDAO {
 	// mybatis id로 회원가입 유무 확인
 	public int confirmID(String userId) {
 
-		sqlSession = sqlSessionFactory.openSession();
+		int result = -1;
 
-		int result = 0;
+		String sql = "SELECT * FROM member WHERE id=?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		try {
-			result = sqlSession.selectOne("confirmId", userId);
-			System.out.println("DAO userId = " + userId);
-			System.out.println("result = : " + result);
-			
-			if (result != 0) {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+
 				result = 1;
 			} else {
 				result = -1;
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			sqlSession.close();
+			DBManager.close(conn, pstmt, rs);
 		}
-
+		System.out.println(result);
 		return result;
 	}
 

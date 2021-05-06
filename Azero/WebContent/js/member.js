@@ -41,12 +41,12 @@ function go_save() {
 	} else if (document.frm.pwd.value != document.frm.pwdCheck.value) {
 		alert("비밀번호가 일치 하지 않습니다.");
 		document.frm.pwd.focus();
-	} else if (document.frm.name.value == "") {
-		alert("이름을 입력해 주세요.");
-		document.frm.name.focus();
 	} else if (document.frm.email.value == "") {
 		alert("Email을 입력해 주세요.");
 		document.frm.email.focus();
+	} else if (document.frm.filename.value == "") {
+		alert("프로필 사진을 넣어 주세요.");
+		document.frm.filename.focus();
 	} else {
 		alert("회원 가입이 완료 되었습니다")
 		document.frm.action = "join.Azero";

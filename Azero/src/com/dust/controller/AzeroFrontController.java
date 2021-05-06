@@ -57,31 +57,31 @@ public class AzeroFrontController extends HttpServlet {
 		if (command.equals("/index.Azero")) { // 메인
 			action = new IndexAction();
 			forward = action.excute(request, response);
-		} else if (command.equals("/loginform.Azero")) {
+		} else if (command.equals("/loginform.Azero")) { // 로그인 창
 			action = new LoginFormAction();
 			forward = action.excute(request, response);
-		} else if (command.equals("/login.Azero")) {
+		} else if (command.equals("/login.Azero")) { // 로그인
 			action = new LoginAction();
 			forward = action.excute(request, response);
-		} else if (command.equals("/logout.Azero")) {
+		} else if (command.equals("/logout.Azero")) { // 로그아웃
 			action = new LogoutAction();
 			forward = action.excute(request, response);
-		} else if (command.equals("/contract.Azero")) {
+		} else if (command.equals("/contract.Azero")) { // 이용 약관
 			action = new ContractAction();
 			forward = action.excute(request, response);
-		} else if (command.equals("/joinform.Azero")) {
+		} else if (command.equals("/joinform.Azero")) { // 회원가입 창
 			action = new JoinFormAction();
 			forward = action.excute(request, response);
-		} else if (command.equals("/id_check_form.Azero")) {
+		} else if (command.equals("/id_check_form.Azero")) { // 아이디 중복 체크
 			action = new IdCheckFormAction();
 			forward = action.excute(request, response);
-		} else if (command.equals("/join.Azero")) {
+		} else if (command.equals("/join.Azero")) { // 회원가입
 			action = new JoinAction();
 			forward = action.excute(request, response);
-		} else if (command.equals("/mypages.Azero")) {
+		} else if (command.equals("/mypages.Azero")) { // 마이페이지, 프로필
 			action = new MyPageAction();
 			forward = action.excute(request, response);
-		} else if (command.equals("/findidform.Azero")) {
+		} else if (command.equals("/findidform.Azero")) { // 아이디 찾기
 			action = new FindIdFormAction();
 			forward = action.excute(request, response);
 		}
@@ -94,7 +94,7 @@ public class AzeroFrontController extends HttpServlet {
 		} else if (command.equals("/boardnotice.Azero")) { // 공지사항 탭
 			action = new boardNoticeAction();
 			forward = action.excute(request, response);
-		}	else if (command.equals("/boardqs.bizpoll")) { // 게시판 글쓰기
+		}	else if (command.equals("/boardqs.Azero")) { // 게시판 글쓰기
 			action = new boardQsAction();
 			forward = action.excute(request, response);
 		}
