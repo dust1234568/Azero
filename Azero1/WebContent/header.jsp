@@ -12,10 +12,10 @@
 <!-- <script type="text/javascript" src="js/mypage.js"></script> -->
 </head>
 <body>
-<div id="wrap">
+<div id="wrap" style="background-color: #EBEBEB">
 	<header>
 		<div id="logo">
-			<a href="index.Azero"><img alt="" src="images/product_img/w2.jpg" border="1" style="border-color: black" width="180" height="100"></a>
+			<a href="index.Azero"><img alt="" src="img/main.png" width="180" height="100"></a>
 		</div>
 		<nav id="catagory_menu">
 			<ul>
@@ -26,10 +26,9 @@
 						<li><a href="contract.Azero">JOIN</a></li>
 					</c:when>
 					<c:otherwise>
-						<%-- <li style="width: 30px; height: 30px">
-							${sessionScope.loginUser.filename }
+						<li style="width: 30px; height: 30px">
+							<img alt="" src="img/core-img/favicon.png" width="30" height="30">
 						</li>
-						<li>|</li> --%>
 						<li style="color: orange">
 							${sessionScope.loginUser.id }(${sessionScope.loginUser.email })
 						</li>
@@ -39,13 +38,7 @@
 					</c:otherwise>
 				</c:choose>
 				<li>|</li>
-				<li><a>CART</a></li>
-				<li>|</li>
-				<li><a>Q&amp;A(1:1)</a></li>
-				<li>|</li>
-				<li><a>APP</a></li>
-				<li>|</li>
-				<li><a href="tabboard.Azero">Board</a></li>
+				<li><a href="tabboard.Azero">고객센터</a></li>
 			</ul>
 		</nav>
 	</header>

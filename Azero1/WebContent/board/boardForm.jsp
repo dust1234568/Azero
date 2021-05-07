@@ -22,14 +22,14 @@
 	}
 	
 	function backToList(obj) {
-		obj.action="boardList.bizpoll";
+		obj.action="boardList.Azero";
 		obj.submit();
 	}
 </script>
 </head>
 <body>
 	<h1 style="text-align: center;">새글 쓰기</h1>
-	<form action="boardAdd.bizpoll" name="articleForm" method="post" enctype="multipart/form-data">
+	<form action="boardAdd.Azero" name="articleForm" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${sessionScope.loginUser.id}">
 		<table border="0" align="center">
 			<tr>

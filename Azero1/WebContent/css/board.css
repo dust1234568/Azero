@@ -12,7 +12,6 @@
   padding: 10px 15px;
   cursor: pointer;
   text-align: center;
-  border: 1px solid #bebebe;
 }
 
 .tab_title li a {
@@ -27,7 +26,6 @@
 
 .tab_cont {
   clear: both;
-  border: 1px solid #dedede;
   height: 600px;
   background-color: #fff;
 }
